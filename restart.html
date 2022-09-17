@@ -88,21 +88,22 @@ of the restarters have the same tag.
 Then <code>with-restarter</code> invokes <em>thunk</em> with no arguments, after which
 the restarters are disestablished and <code>with-restarter</code>
 returns whatever <em>thunk</em> returns.</p>
-<p><code>(find-restarter</code>&nbsp;<em>tag restarters</em><code>)</code> -&gt; <em>restarter</em> or <code>#f</code></p>
-<p>Searches <em>restarters</em> for a restarter whose tag is the same
-(in the sense of <code>eqv?</code>) as <em>tag</em>.  The <em>restarters</em> argument
+<p><code>(collect-restarters</code>&nbsp;<em>restarters</em><code>)</code></p>
+The <em>restarters</em> argument
 may be a single restarter, a list of restarters, or a
 <a href="https://srfi.schemers.org/srfi-222/srfi-222.html">SRFI  222</a>
-compound object.  If no such restarter is found in <em>restarters</em>,
-the value of <code>(ambient-restarters)</code> is searched instead.
-Failing that as well, <code>#f</code> is returned.</p>
-<p><code>(collect-restarters</code>&nbsp;<em>restarters</em><code>)</code></p>
-<p>The argument <em>restarters</em> has the same semantics as
-the <em>restarters</em> argument of <code>find-restarter</code>.  All the
-restarters in <em>restarters</em> and <code>(ambient-restarters)</code> are
+compound object.  All the
+restarters in <em>restarters</em> and in <code>(ambient-restarters)</code> are
 collected into a list, excluding 
 those whose tag is the same (in the sense of <code>eqv?</code>)
 as a restarter already on the list.  Returns the list.</p>
+<p><code>(find-restarter</code>&nbsp;<em>tag restarters</em><code>)</code> -&gt; <em>restarter</em> or <code>#f</code></p>
+<p>Searches <code>(collect </code><em>restarters</em><code>)</code> for the first
+restarter whose tag is the same (in the sense of <code>eqv?</code>)
+as <em>tag</em>.
+If no such restarter is found in <em>restarters</em>,
+the value of <code>(ambient-restarters)</code> is searched instead.
+Failing that as well, <code>#f</code> is returned.</p>
 <p><code>interactor</code></p>
 <p>A SRFI 39 / R7RS parameter whose value is an interactor
 procedure.  The contract of such a procedure is as follows:</p>
